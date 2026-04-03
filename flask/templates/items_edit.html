@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form method="post" autocomplete="off" class="mb-3">
+
+    <!-- Chrome 対策のダミー -->
+    <input type="text" name="fake" style="display:none" autocomplete="off">
+
+    <div class="mb-3">
+        <label class="form-label">Label</label>
+        <input name="label" class="form-control" autocomplete="off"
+               value="{{ item.label if item else '' }}">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Detail</label>
+        <textarea name="detail" class="form-control" rows="4" autocomplete="off">{{ item.detail if item else '' }}</textarea>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Tags</label>
+        <input name="tags" class="form-control" autocomplete="off"
+               value="{{ item.tags if item else '' }}">
+    </div>
+
+    <button class="btn btn-primary">保存</button>
+</form>
+
+<a href="/items" class="btn btn-secondary">戻る</a>
+
+{% endblock %}

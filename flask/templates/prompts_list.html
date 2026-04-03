@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<a href="/prompts/edit/0" class="btn btn-primary mb-3">＋ 新規追加</a>
+
+<table class="table table-dark table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Text</th>
+            <th>Item Count</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in prompts %}
+        <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.text }}</td>
+            <td>{{ p.item_count }}</td>
+            <td>
+                <a href="/prompts/edit/{{ p.id }}" class="btn btn-sm btn-secondary">編集</a>
+                <a href="/prompts/delete/{{ p.id }}" class="btn btn-sm btn-danger">削除</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

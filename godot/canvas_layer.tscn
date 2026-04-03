@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://dcmui624ekcjt"]
+
+[ext_resource type="Script" uid="uid://bd3kuivsgsg1p" path="res://control.gd" id="1_v2lfg"]
+[ext_resource type="Shader" uid="uid://dghx3vnfta3dk" path="res://canvas_layer.gdshader" id="2_tg4cr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_37rai"]
+shader = ExtResource("2_tg4cr")
+shader_parameter/speed = 1.0
+shader_parameter/amplitude = 0.1
+shader_parameter/frequency = 8.0
+shader_parameter/blur_width = 0.1
+shader_parameter/water_color = Color(0.3, 0.1, 0.2, 1)
+shader_parameter/bg_color = Color(0.1, 0.1, 0.15, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wf015"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_v2lfg"]
+font_size = 24
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1028190984]
+
+[node name="Control" type="Control" parent="." unique_id=430768369]
+custom_minimum_size = Vector2(600, 900)
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.125
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v2lfg")
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=1371843456]
+material = SubResource("ShaderMaterial_37rai")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1559125484]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer" unique_id=708699302]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer" unique_id=363020464]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+text = "あなたは何をめざしているか"
+label_settings = SubResource("LabelSettings_wf015")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/MarginContainer/VBoxContainer" unique_id=646126020]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_vertical = 1
+label_settings = SubResource("LabelSettings_v2lfg")
+autowrap_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer" unique_id=1635571344]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Button" type="Button" parent="Control/MarginContainer/VBoxContainer/MarginContainer" unique_id=1243017780]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25565845, 0.25565895, 0.25565854, 1)
+theme_override_font_sizes/font_size = 40
+text = "次のキーワードへ"
+
+[connection signal="gui_input" from="Control" to="Control" method="_on_gui_input"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/MarginContainer/Button" to="Control" method="_on_button_pressed"]

@@ -1,0 +1,10 @@
+# Godot 4
+godot/.godot/
+godot/.import/
+godot/export/
+*.tmp
+
+# Flask
+flask/venv/
+__pycache__/
+*.pyc
