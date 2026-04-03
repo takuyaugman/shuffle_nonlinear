@@ -20,3 +20,6 @@ python -m pip install flask sqlite3
 cd flask
 python app.py
 ```
+
+http://localhost:5000
+から編集画面を見ることが出来ます。
