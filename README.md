@@ -11,7 +11,7 @@ flask と sqlite3 パッケージが必要なので pip でインストールし
 + Windowsの場合
 
 ```bash
-python -m pip install flask sqlite3
+python -m pip install flask 
 ```
 
 + サーバーの実行
