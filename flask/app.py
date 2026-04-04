@@ -1,9 +1,11 @@
 from flask import Flask, render_template, request, redirect
 import sqlite3
+#import shutil
+import json
 
 app = Flask(__name__)
 
-DB = "../data.db"
+DB = "data.db"
 
 def query(sql, params=(), one=False):
     con = sqlite3.connect(DB)
@@ -77,5 +79,47 @@ def prompts_delete(prompt_id):
     query("DELETE FROM prompts WHERE id=?", (prompt_id,))
     return redirect("/prompts")
 
+# Converts sqlite3 to json
+#
+import sqlite3
+import json
+
+def db_to_json(db_path):
+    conn = sqlite3.connect(db_path)
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+
+    # 全テーブル名を取得（内部テーブルを除外）
+    cur.execute("""
+        SELECT name FROM sqlite_master
+        WHERE type='table' AND name NOT LIKE 'sqlite_%';
+    """)
+    tables = [row["name"] for row in cur.fetchall()]
+
+    result = {}
+
+    for table in tables:
+        cur.execute(f"SELECT * FROM {table};")
+        rows = cur.fetchall()
+        result[table] = [dict(row) for row in rows]
+
+    conn.close()
+
+    return json.dumps(result, ensure_ascii=False, indent=2)
+
+
+# 実行
+json_text = db_to_json("data.db")
+
+with open("../godot/data.db", "w", encoding="utf-8") as f:
+    f.write(json_text)
+
+print("✔ 完了")
+
+
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    #shutil.copyfile("../data.db", "../godot/data.db")
+    #print("✔ 起動時にコピー完了")
+    db_to_json("../data.db")
+    app.run()

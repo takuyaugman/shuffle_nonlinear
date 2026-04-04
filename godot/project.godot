@@ -10,24 +10,19 @@ config_version=5
 
 [application]
 
-config/name="SHUFFLE"
-run/main_scene="res://canvas_layer.tscn"
-config/features=PackedStringArray("4.6", "Mobile")
+config/name="shuffle"
+run/main_scene="uid://ylv10pfk8ihb"
+config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=600
-window/size/viewport_height=800
-window/size/initial_position_type=3
-window/size/resizable=false
-
-[physics]
-
-3d/physics_engine="Jolt Physics"
+window/size/viewport_width=1080
+window/size/viewport_height=1920
+window/handheld/orientation=1
 
 [rendering]
 
-rendering_device/driver.windows="d3d12"
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true

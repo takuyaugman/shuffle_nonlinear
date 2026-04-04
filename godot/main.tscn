@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://ylv10pfk8ihb"]
+
+[ext_resource type="Script" uid="uid://bvn25qvdokdf0" path="res://main.gd" id="1_ig7tw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ig7tw"]
+font_size = 72
+
+[sub_resource type="LabelSettings" id="LabelSettings_0xm2m"]
+font_size = 48
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ig7tw")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+text = "Foo"
+label_settings = SubResource("LabelSettings_ig7tw")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1200)
+layout_mode = 2
+text = "Bar"
+label_settings = SubResource("LabelSettings_0xm2m")
+autowrap_mode = 1
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "次のラベルへ"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

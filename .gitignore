@@ -2,6 +2,7 @@
 godot/.godot/
 godot/.import/
 godot/export/
+godot/release
 *.tmp
 
 # Flask
